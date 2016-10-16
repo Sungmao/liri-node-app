@@ -1,6 +1,7 @@
-
+var Twitter = require('twitter');
 var request = require('request');
 var spotify = require('spotify');
+
 
 var nodeArgs = process.argv;
 var input1 = process.argv[2];
@@ -14,6 +15,39 @@ for (var i=3; i<nodeArgs.length; i++){
 	}
 }
 
+
+function myTweets() {
+	
+	var keyFile = require("./keys.js");
+	var twitterKeys = keyFile.twitterKeys;
+
+	var client = new Twitter(twitterKeys);
+ 
+	var params = {screen_name: 'allenwu320'};
+	client.get('statuses/user_timeline', params, function(error, tweets, response) {
+
+		console.log("my last tweets!!!!")
+		console.log("--------------------------")
+
+  		if (!error && tweets.length<19) {
+  		  	for (i=0; i<tweets.length; i++) {
+
+  		  		console.log(tweets[i].text);
+  		  		console.log("--------------------------")
+
+  		  	} 
+  		} else if (!error && tweets.length>19) {
+  		  		for (i=0; i<20; i++) {
+
+  		  			console.log(tweets[i].text);
+  		  			console.log("--------------------------")
+
+  		  		}
+  		  }		  		
+  	
+	});
+
+}
 
 
 function thisSong(input2) {
@@ -84,6 +118,10 @@ function liri(input1, input2) {
 
 		movieThis(input2)
 	
+	} else if (input1 === 'my-tweets') {
+
+		myTweets();
+
 	} else {
 
 		console.log("What would you like to do?")
