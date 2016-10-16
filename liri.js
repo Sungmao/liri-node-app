@@ -3,7 +3,6 @@ var request = require('request');
 var spotify = require('spotify');
 var fs = require('fs');
 
-
 var nodeArgs = process.argv;
 var input1 = process.argv[2];
 var input2 = "";
@@ -14,7 +13,7 @@ for (var i=3; i<nodeArgs.length; i++){
 	} else {
 		input2 = input2 + nodeArgs[i];
 	}
-}
+};
 
 
 function myTweets() {
@@ -46,9 +45,9 @@ function myTweets() {
   		  		}
   		  }		  		
   	
-	});
+	})
 
-}
+};
 
 
 function thisSong(input2) {
@@ -77,8 +76,8 @@ function thisSong(input2) {
     	
     	}
 
-	});
-}
+	})
+};
 
 
 function movieThis(input2) {
@@ -136,7 +135,6 @@ function doWhatSays() {
 }; 
 
 
-
 function liri(input1, input2) {
 
 	if (input1 === 'spotify-this-song') {
@@ -158,19 +156,16 @@ function liri(input1, input2) {
 	} else {
 
 		console.log("What would you like to do?")
+		console.log("spotify-this-song")
+		console.log("movie-this")
+		console.log("my-tweets")
+		console.log("do-what-it-says")
+
 	}
 
 };
 
 
 liri(input1, input2);
-
-
-
-
-
-
-
-
 
 
