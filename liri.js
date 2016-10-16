@@ -2,10 +2,8 @@
 var request = require('request');
 var spotify = require('spotify');
 
-var input1 = process.argv[2];
-//var input2 = process.argv[3];
-
 var nodeArgs = process.argv;
+var input1 = process.argv[2];
 var input2 = "";
 
 for (var i=3; i<nodeArgs.length; i++){
@@ -47,9 +45,7 @@ function thisSong(input2) {
 	});
 }
 
-
 //thisSong(input2);
-
 
 function movieThis(input2) {
 
@@ -76,6 +72,34 @@ function movieThis(input2) {
 
 }
 
-movieThis(input2);
+//movieThis(input1);
+
+function liri(input1, input2) {
+
+	if (input1 === 'spotify-this-song') {
+
+		thisSong(input2);
+
+	} else if (input1 === 'movie-this') {
+
+		movieThis(input2)
+	
+	} else {
+
+		console.log("What would you like to do?")
+	}
+
+}
+
+
+liri(input1, input2);
+
+
+
+
+
+
+
+
 
 
