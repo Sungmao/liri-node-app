@@ -1,6 +1,7 @@
 var Twitter = require('twitter');
 var request = require('request');
 var spotify = require('spotify');
+var fs = require('fs');
 
 
 var nodeArgs = process.argv;
@@ -79,7 +80,6 @@ function thisSong(input2) {
 	});
 }
 
-//thisSong(input2);
 
 function movieThis(input2) {
 
@@ -104,9 +104,38 @@ function movieThis(input2) {
 		}
 	})
 
-}
+};
 
-//movieThis(input1);
+function doWhatSays() {
+
+	fs.readFile("random.txt", "utf8", function(err, data){
+
+		var randomText = data.split(',');
+
+		console.log(randomText[1]);
+
+		input1 = randomText[0];
+
+		var randomText2 = randomText[1].split(" ");
+
+		input2 = "";
+
+		for (i=0; i<randomText2.length; i++) {
+			
+			if (i>0 && i<randomText2.length){
+				input2 = input2 + "+" + randomText2[i];
+			} else {
+				input2 = input2 + randomText2[i];
+			}
+
+		}
+
+		liri(input1, input2);
+	})
+
+}; 
+
+
 
 function liri(input1, input2) {
 
@@ -122,12 +151,16 @@ function liri(input1, input2) {
 
 		myTweets();
 
+	} else if (input1 === 'do-what-it-says') {
+
+		doWhatSays();
+
 	} else {
 
 		console.log("What would you like to do?")
 	}
 
-}
+};
 
 
 liri(input1, input2);
