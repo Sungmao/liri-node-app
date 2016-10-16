@@ -3,7 +3,19 @@ var request = require('request');
 var spotify = require('spotify');
 
 var input1 = process.argv[2];
-var input2 = process.argv[3];
+//var input2 = process.argv[3];
+
+var nodeArgs = process.argv;
+var input2 = "";
+
+for (var i=3; i<nodeArgs.length; i++){
+	if (i>3 && i<nodeArgs.length){
+		input2 = input2 + "+" + nodeArgs[i];
+	} else {
+		input2 = input2 + nodeArgs[i];
+	}
+}
+
 
 
 function thisSong(input2) {
@@ -20,14 +32,14 @@ function thisSong(input2) {
        	 return;
    	 	}
 
-   	 	songJson = data.tracks
+   	 	songJson = data.tracks.items;
 
-   	 	for (i = 0; i<songJson.items.length; i++) {
+   	 	for (i = 0; i<songJson.length; i++) {
     	
-    	console.log(songJson.items[i].artists[0].name);
-    	console.log(songJson.items[i].name);
-    	console.log(songJson.items[i].preview_url);
-    	console.log(songJson.items[i].album.name);
+    	console.log(songJson[i].artists[0].name);
+    	console.log(songJson[i].name);
+    	console.log(songJson[i].preview_url);
+    	console.log(songJson[i].album.name);
     	console.log("--------------------------------")
     	
     	}
@@ -36,24 +48,7 @@ function thisSong(input2) {
 }
 
 
-thisSong(input2);
-
-
-// This will show the following information about the song in your terminal/bash window
-
-// Artist(s)
-// The song's name
-// A preview link of the song from Spotify
-// The album that the song is from
-// if no song is provided then your program will default to
-
-// "The Sign" by Ace of Base
-
-
-
-
-
-
+//thisSong(input2);
 
 
 function movieThis(input2) {
@@ -81,6 +76,6 @@ function movieThis(input2) {
 
 }
 
-
+movieThis(input2);
 
 
